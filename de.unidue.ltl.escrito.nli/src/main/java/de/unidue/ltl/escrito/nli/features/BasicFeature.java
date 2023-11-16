@@ -17,7 +17,6 @@ import org.dkpro.tc.api.type.TextClassificationTarget;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
-@TypeCapability(inputs = { "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token" })
 public class BasicFeature
     extends FeatureExtractorResource_ImplBase
     implements FeatureExtractor

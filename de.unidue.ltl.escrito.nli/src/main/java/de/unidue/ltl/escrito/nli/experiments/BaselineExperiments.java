@@ -60,7 +60,7 @@ public class BaselineExperiments extends Experiments_ImplBase implements Constan
 				FeatureSettings.getBasicFeatureSet(),
 				learningsArgsDims);
 
-		runCrossValidation(pSpace, experimentName, getPreprocessing("en"), 10);
+		runCrossValidation(pSpace, experimentName, getEmptyPreprocessing(), 10);
 	}
 
 	 public static AnalysisEngineDescription getPreprocessing(String languageCode) throws ResourceInitializationException {
