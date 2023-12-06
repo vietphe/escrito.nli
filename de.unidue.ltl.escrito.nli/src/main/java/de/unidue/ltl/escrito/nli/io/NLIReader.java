@@ -200,11 +200,12 @@ public class NLIReader extends JCasResourceCollectionReader_ImplBase {
 			sb.append(" ");
 			String subStringText = text.length() > 40 ? text.substring(0, 40) : text.substring(0, text.length());
 			sb.append(subStringText);
+			sb.append(" ...");
 			sb.append("-");
 			sb.append(" ");
 			sb.append(label);
 			
-			sb.append(" ...");
+			
 			return sb.toString();        
 		}
 		
