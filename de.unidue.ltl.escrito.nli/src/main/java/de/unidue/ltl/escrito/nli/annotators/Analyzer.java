@@ -14,10 +14,9 @@ public class Analyzer extends JCasAnnotator_ImplBase {
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		DocumentMetaData meta = JCasUtil.selectSingle(aJCas, DocumentMetaData.class);
-//		String id = meta.getDocumentId();
-//		System.out.println("Printing essay: "+id);
-		String content = meta.getDocumentTitle();
+		String content = meta.getDocumentId();
 		System.out.println("Printing essay: "+content);
+		aJCas.getDocumentText();
 
 		Collection<Sentence> sentences = JCasUtil.select(aJCas, Sentence.class);
 		for (Sentence sentence : sentences){

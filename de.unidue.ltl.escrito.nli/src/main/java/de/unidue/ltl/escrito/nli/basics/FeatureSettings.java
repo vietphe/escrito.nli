@@ -36,7 +36,10 @@ import de.unidue.ltl.escrito.features.similarity.PairwiseFeatureWrapper;
 import de.unidue.ltl.escrito.features.similarity.StringSimilarityFeatureExtractor;
 import de.unidue.ltl.escrito.features.similarity.WordOverlapFeatureExtractor;
 import de.unidue.ltl.escrito.nli.features.BasicFeature;
-
+import de.unidue.ltl.escrito.nli.features.FE_AvgNrOfCharsPerSentence;
+import de.unidue.ltl.escrito.nli.features.FE_AvgNrOfCharsPerToken;
+import de.unidue.ltl.escrito.nli.features.FE_LexicalDensity;
+import de.unidue.ltl.escrito.nli.features.FE_NrOfParagraphs;
 public class FeatureSettings
 implements Constants
 {
@@ -112,12 +115,12 @@ implements Constants
 	{
 		Dimension<TcFeatureSet> dimFeatureSets = Dimension.create(
 				DIM_FEATURE_SET,
-				new TcFeatureSet(
-						
-						TcFeatureFactory.create(
-								BasicFeature.class
-									
-						)
+				new TcFeatureSet(						
+//						TcFeatureFactory.create(BasicFeature.class)
+						TcFeatureFactory.create(FE_AvgNrOfCharsPerSentence.class),
+						TcFeatureFactory.create(FE_AvgNrOfCharsPerToken.class),
+						TcFeatureFactory.create(FE_LexicalDensity.class),
+						TcFeatureFactory.create(FE_NrOfParagraphs.class)
 				)
 		);
 		return dimFeatureSets;

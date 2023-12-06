@@ -25,21 +25,18 @@ public class BasicFeature
     @Override
     public Set<Feature> extract(JCas jcas, TextClassificationTarget target)
         throws TextClassificationException
-    {
-    	
-    	double numTokens = JCasUtil.selectCovered(jcas, Token.class, target).size();
-    	System.out.println(numTokens);
-    	
+    {       	
         Set<Feature> featList = new HashSet<Feature>();
-
+//        String text = jcas.getDocumentText();
         DocumentMetaData meta = JCasUtil.selectSingle(jcas, DocumentMetaData.class);
-        String text = meta.getDocumentTitle();
+        String text = meta.getDocumentId();
         System.out.println(text);
         String[] features = text.split(" ");
+        System.out.println(features.length);
         for (int i = 0; i < features.length; i++) {
         	double fValue = Double.parseDouble(features[i]);
-        	featList.add(new Feature("Features_"+i, fValue, FeatureType.NUMERIC));
-		}        
+            featList.add(new Feature("Features_"+i, fValue, FeatureType.NUMERIC));		
+		}               
         return featList;
     }
 }

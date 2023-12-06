@@ -53,6 +53,11 @@
 
 	<dependencies>
 		<dependency>
+    		<groupId>org.dkpro.core</groupId>
+    		<artifactId>dkpro-core-api-io-asl</artifactId>
+    		<version>2.2.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.dkpro.tc</groupId>
 			<artifactId>dkpro-tc-features-ngram</artifactId>
 		</dependency>
@@ -191,6 +196,52 @@
   			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
   			<artifactId>de.tudarmstadt.ukp.dkpro.core.stanfordnlp-model-tagger-en-bidirectional-distsim</artifactId>
   			<version>20140616.1</version>
+		</dependency>
+			<!-- dkpro tc dependencies -->
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-api</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-core</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-ml</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-features</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-features-ngram</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-api-features</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-ml-weka</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.dkpro.tc</groupId> -->
+<!-- 			<artifactId>dkpro-tc-examples</artifactId> -->
+<!-- 			<version>1.1.0-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.dkpro.tc</groupId>
+			<artifactId>dkpro-tc-testing</artifactId>
+			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
 

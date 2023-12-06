@@ -12,20 +12,13 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.dkpro.lab.task.Dimension;
 import org.dkpro.lab.task.ParameterSpace;
 import org.dkpro.tc.core.Constants;
-
-import de.tudarmstadt.ukp.dkpro.core.clearnlp.ClearNlpLemmatizer;
-import de.tudarmstadt.ukp.dkpro.core.clearnlp.ClearNlpSegmenter;
 import de.tudarmstadt.ukp.dkpro.core.corenlp.CoreNlpLemmatizer;
 import de.tudarmstadt.ukp.dkpro.core.corenlp.CoreNlpPosTagger;
 import de.tudarmstadt.ukp.dkpro.core.corenlp.CoreNlpSegmenter;
-import de.tudarmstadt.ukp.dkpro.core.io.bincas.BinaryCasReader;
-import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpPosTagger;
-import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 import de.unidue.ltl.escrito.nli.annotators.Analyzer;
 import de.unidue.ltl.escrito.nli.basics.Experiments_ImplBase;
 import de.unidue.ltl.escrito.nli.basics.FeatureSettings;
-import de.unidue.ltl.escrito.nli.io.NLIFeatureReader;
-import de.unidue.ltl.escrito.nli.io.NLIFeatureReader.RatingBias;
+import de.unidue.ltl.escrito.nli.io.NLIReader;
 
 public class BaselineExperiments extends Experiments_ImplBase implements Constants{
 
@@ -33,16 +26,17 @@ public class BaselineExperiments extends Experiments_ImplBase implements Constan
 		//TODO: set system property
 		System.setProperty("DKPRO_HOME", "C:\\Users\\vietphe\\workspace\\DKPRO_HOME");
 	
-		String path = "src\\main\\resources\\featureFile\\NLIFeaturesSorted.csv";
-		runBasicAsapExperiment(path);	
+		String textPath = "D:\\HiWi\\LiFT\\Corpus\\nli-shared-task-2017\\data\\essays\\train\\test";
+		String labelPath = "D:\\HiWi\\LiFT\\Corpus\\nli-shared-task-2017\\data\\labels\\train\\labels.train.csv";
+		runBasicNLIExperiment(textPath, labelPath);	
 	}
 
-	private static void runBasicAsapExperiment(String trainData) throws Exception {
+	private static void runBasicNLIExperiment(String textPath, String labelPath) throws Exception {
 		
-		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(NLIFeatureReader.class,
-				NLIFeatureReader.PARAM_QUESTION_ID,1, NLIFeatureReader.PARAM_TARGET_LABEL, "label",
-				NLIFeatureReader.PARAM_RATING_BIAS, RatingBias.low, NLIFeatureReader.PARAM_DO_SPARSECLASSMERGING, false,
-				NLIFeatureReader.PARAM_DO_NORMALIZATION, false, NLIFeatureReader.PARAM_INPUT_FILE, trainData);
+		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+				NLIReader.class,
+				NLIReader.PARAM_LABEL_FILE, labelPath,				
+				NLIReader.PARAM_INPUT_FILE, textPath);
 		runBaselineExperiment("NLI", reader, reader, "en");
 	}
 	private static void runBaselineExperiment(String experimentName, CollectionReaderDescription readerTrain,
@@ -60,7 +54,7 @@ public class BaselineExperiments extends Experiments_ImplBase implements Constan
 				FeatureSettings.getBasicFeatureSet(),
 				learningsArgsDims);
 
-		runCrossValidation(pSpace, experimentName, getEmptyPreprocessing(), 10);
+		runCrossValidation(pSpace, experimentName, getPreprocessing("en"), 10);
 	}
 
 	 public static AnalysisEngineDescription getPreprocessing(String languageCode) throws ResourceInitializationException {
@@ -73,9 +67,9 @@ public class BaselineExperiments extends Experiments_ImplBase implements Constan
 	     AnalysisEngineDescription analyzer = createEngineDescription(Analyzer.class);
 	        
 	     return createEngineDescription(
-	    		 	seg
-//	                tagger,
-//	                lemmatizer
+	    		 	seg,
+	                tagger,
+	                lemmatizer
 
 //	                analyzer
 

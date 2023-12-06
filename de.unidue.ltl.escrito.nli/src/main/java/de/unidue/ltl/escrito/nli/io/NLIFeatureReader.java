@@ -23,15 +23,10 @@ import de.tudarmstadt.ukp.dkpro.core.api.io.JCasResourceCollectionReader_ImplBas
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 import de.tudarmstadt.ukp.dkpro.core.api.resources.ResourceUtils;
 
-// TODO ASAP and UDE reader seem to be very similar (use base class or even same reader?)
+
 public class NLIFeatureReader
 extends JCasResourceCollectionReader_ImplBase
 {
-
-	public enum RatingBias {
-		high,
-		low
-	}
 
 	/**
 	 * Language
@@ -50,9 +45,7 @@ extends JCasResourceCollectionReader_ImplBase
 	/**
 	 * In case of two coders with different ratings, use lower rating/higher rating bias.
 	 */
-	public static final String PARAM_RATING_BIAS = "RatingBias";
-	@ConfigurationParameter(name = PARAM_RATING_BIAS, mandatory = true)
-	protected RatingBias ratingBias;
+	
 
 	public static final String PARAM_DO_SPARSECLASSMERGING = "DoSparseClassMerging";
 	@ConfigurationParameter(name = PARAM_DO_SPARSECLASSMERGING, mandatory = true)
@@ -151,8 +144,8 @@ extends JCasResourceCollectionReader_ImplBase
 		jcas.setDocumentLanguage(language);
 
 		DocumentMetaData dmd = DocumentMetaData.create(jcas);
-		dmd.setDocumentId(item.getTextId()); 
-		dmd.setDocumentTitle(item.getText());
+		dmd.setDocumentId(item.getText()); 
+		dmd.setDocumentTitle(item.getTextId());
 		dmd.setDocumentUri(inputFileString);
 		dmd.setCollectionId(item.getTextId());
 
